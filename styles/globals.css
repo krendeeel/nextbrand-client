@@ -1,9 +1,12 @@
+@import url("./credit-card.css");
+
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {
@@ -11,6 +14,116 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-height: 75vh;
+  width: 100%;
+  object-fit: contain;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-weight: bolder;
+  height: 50px;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 10px !important;
+}
+
 * {
   box-sizing: border-box;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+@media (max-width: 920px) {
+  .flex {
+    display: flex;
+    justify-content: center;
+  }
+}
+@media (max-width: 920px) {
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+}
+.bolder {
+  font-weight: 700 !important;
+}
+.title {
+  font-size: 1.5rem !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  color: rgb(0, 0, 0);
+  font-weight: 700 !important;
+}
+
+.brand {
+  color: #ffffff;
+  font-weight: bolder !important;
+  font-size: 1.5rem !important;
+}
+
+.form {
+  padding-top: 15px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.sort {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.k {
+  width: 400px !important;
+}
+
+.product,
+.product__content {
+  display: flex;
+  flex-direction: column;
+}
+.product__content {
+  margin: 10px;
+}
+
+.product__content > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+}
+
+.section {
+  margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+  .payment {
+    flex-direction: column;
+  }
 }
