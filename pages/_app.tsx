@@ -42,7 +42,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(store => async ({ ctx, Compon
   const dispatch = store.dispatch as NextThunkDispatch
   const { token } = cookies(ctx);
   try {
-    const response = await axios.get('https://shielded-mountain-38473.herokuapp.com/auth/user', {
+    const response = await axios.get('https://nextbrand-server.herokuapp.com/auth/user', {
       headers: {
         authorization: `Bearer ${token}`
       }

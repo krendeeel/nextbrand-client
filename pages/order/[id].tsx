@@ -19,15 +19,15 @@ import cookies from 'next-cookies';
 
 
 interface OrderProps {
-    order: IOrder | null,
+    order: IOrder,
     token?: string
 }
 
 const Order: NextPage<OrderProps> = ({ order, token }) => {
-    if (!order) return <>NOT FOUND</>
     const { shippingAddress: { fullName, address, city, country, postalCode } } = order;
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [loading, setLoading] = useState(false);
+
     const deliveredOrder = async () => {
         closeSnackbar();
         setLoading(true);
@@ -124,6 +124,10 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
         }
     } catch (error) {
         return {
+            redirect: {
+                permanent: false,
+                destination: "/",
+            },
             props: {
                 order: {} as IOrder,
                 token: ''
