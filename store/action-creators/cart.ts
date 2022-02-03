@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import {
-    CartAction, CartActionTypes, ICartItem, IOrder, IPayment, IShipping
+    CartAction, CartActionTypes, ICartItem, IPayment, IShipping
 } from "../../types/Cart.type";
 
 
@@ -59,23 +59,4 @@ export const cartSetError = (error: string): CartAction => {
     }
 }
 
-export const payOrder = (order: IOrder) => (dispatch: Dispatch<CartAction>) => {
-    dispatch(cartSetLoading(true))
-    try {
-        //запрос
-    } catch (error) {
-        dispatch(cartSetError('ошибка оплаты!'))
-    }
-    dispatch(cartSetLoading(false))
-}
-
-export const deliveOrder = (order: IOrder) => (dispatch: Dispatch<CartAction>) => {
-    dispatch(cartSetLoading(true))
-    try {
-        //запрос
-    } catch (error) {
-        dispatch(cartSetError('Доставка не подтверждена. Повторите попытку!'))
-    }
-    dispatch(cartSetLoading(false))
-}
 
