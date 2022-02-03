@@ -20,9 +20,11 @@ import { useTypedSelector } from '../utils/hooks/useTypedSelector';
 import OrdersDataService from '../api/orders/index'
 import { useActions } from '../utils/hooks/useActions';
 import { IShipping } from '../types/Cart.type';
+import { parseCookies } from 'nookies';
+import { NextPage } from 'next';
 
-function PlaceOrder() {
-
+const PlaceOrder: NextPage = () => {
+    const { token } = parseCookies();
     const { shipping, payment, items, isLoading } = useTypedSelector(state => state.cart);
     const router = useRouter();
     const { cartSetLoading } = useActions()
@@ -54,7 +56,7 @@ function PlaceOrder() {
                 shippingPrice,
                 taxPrice,
                 totalPrice
-            })
+            }, token)
             enqueueSnackbar("Оплата прошла успешно!", { variant: 'success' })
             router.push(`/order/${order._id}`)
 

@@ -20,8 +20,13 @@ class OrdersDataService {
         });
         return response.data;
     }
-    async createOrder(data: ICreateOrder): Promise<IOrder> {
-        const response = await axios.post<IOrder>("/orders", data);
+    async createOrder(data: ICreateOrder, token: string): Promise<IOrder> {
+        const response = await axios.post<IOrder>("/orders", data, {
+            headers: {
+                "Content-type": "application/json",
+                "authorization": `Bearer ${token}`
+            }
+        });
         return response.data;
     }
     async diliveredOrder(id: string, token: string | undefined): Promise<IOrder> {
