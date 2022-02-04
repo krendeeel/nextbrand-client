@@ -1,4 +1,4 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import React, { useRef } from 'react'
 interface CustomSelectProps {
     value: string,

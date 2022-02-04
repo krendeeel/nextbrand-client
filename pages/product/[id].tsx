@@ -1,5 +1,6 @@
 import { Button, Grid, List, ListItem, Typography } from '@material-ui/core';
-import { FormControl, MenuItem, Rating, Select } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import { Rating } from '@mui/material';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router'
 import Layout from '../../layouts/Layout';

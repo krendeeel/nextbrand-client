@@ -1,8 +1,6 @@
 import {
     IconButton,
     Link,
-    MenuItem,
-    Select,
     Table,
     TableBody,
     TableCell,
@@ -10,12 +8,13 @@ import {
     TableHead,
     TableRow,
     Typography
-} from '@mui/material'
+} from '@mui/material';
+import { FormControl, MenuItem, Select } from '@material-ui/core';
 import React from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import NextLink from 'next/link';
 import { ICartItem } from '../types/Cart.type';
-import { FormControl } from '@material-ui/core';
+
 
 interface OrderCollectionProps {
     items: ICartItem[],

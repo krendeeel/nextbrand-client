@@ -26,7 +26,7 @@ const Layout: React.FC<LayoutProps> = ({ title, description, keywords, children 
                 <title>{title ? `${title} - Next Brand` : 'Next Brand'}</title>
                 {description && <meta name='description' content={description}></meta>}
                 <link rel="shortcut icon" href="/images/logo.png" />
-                <meta name="description" content={`Обувь на любой вкус` + description} />
+                <meta name="description" content={`Обувь на любой вкус`} />
                 <meta name="robots" content="index, follow" />
                 <meta name="keywords" content={keywords || "Обувь, кроссовки, туфли"} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />

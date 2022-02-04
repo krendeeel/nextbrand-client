@@ -1,17 +1,14 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import { MenuItem, IconButton, Box } from '@material-ui/core';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import IconButton from '@mui/material/IconButton';
 import { amber } from '@mui/material/colors';
 import { Logout, Settings } from '@mui/icons-material'
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import { useRouter } from 'next/router';
 import { useActions } from '../utils/hooks/useActions';
 import { destroyCookie } from 'nookies';
-
 
 interface AccountButtonProps {
     user: string
@@ -51,8 +48,6 @@ const AccountButton: React.FC<AccountButtonProps> = ({ user }) => {
 
                 <IconButton
                     onClick={handleClick}
-                    size="small"
-                    sx={{ ml: 2 }}
                     aria-controls={open ? 'account-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
