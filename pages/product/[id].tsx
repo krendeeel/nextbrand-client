@@ -40,7 +40,7 @@ const ProductScreen: NextPage<ProductScreenProps> = ({ product }) => {
         setSize(event.target.value);
     };
     return (
-        <Layout title={product.name} description={product.description}>
+        <Layout title={product?.name} description={product?.description}>
             <Grid container spacing={2}>
                 <Grid item md={6} xs={12} >
                     <List>

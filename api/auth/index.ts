@@ -1,4 +1,4 @@
-import { IUser, loginUserData, registerUserData, ResponseUser, updateUserData } from "../../types/Auth.type";
+import { adminInfo, IUser, loginUserData, registerUserData, ResponseUser, updateUserData } from "../../types/Auth.type";
 import axios from "../axios";
 import { setCookie } from 'nookies';
 
@@ -15,7 +15,7 @@ class AuthDataService {
     }
     async loginUser(data: loginUserData): Promise<IUser> {
         const response = await axios.post<ResponseUser>("/auth/login", data);
-        const { token, ...other } = response.data
+        const { token, ...other } = response.data;
         setCookie(null, 'token', token);
         return other;
     }
@@ -24,6 +24,10 @@ class AuthDataService {
         const { token, ...other } = response.data;
         document.cookie = `token=${token}; path=/`
         return other;
+    }
+    async getAdminInfo(): Promise<adminInfo> {
+        const response = await axios.get<adminInfo>("/auth/admin");
+        return response.data;
     }
 }
 

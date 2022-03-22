@@ -45,7 +45,7 @@ const Layout: React.FC<LayoutProps> = ({ title, description, keywords, children 
                             <CartButton badge={items.length} />
                             {user ? (
                                 <>
-                                    <AccountButton user={user.name[0]} />
+                                    <AccountButton user={user.name[0]} admin={user.isAdmin} />
                                 </>
                             )
                                 : (

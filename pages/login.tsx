@@ -20,10 +20,13 @@ const Login: NextPage = () => {
     const router = useRouter()
     const submitHandler = async ({ email, password }: any) => {
         closeSnackbar()
-        loginUser({ email, password })
-        error
-            ? enqueueSnackbar(error, { variant: 'error' })
-            : router.push('/')
+        await loginUser({ email, password });
+        console.log(error, "ERROR")
+        if (error) {
+            enqueueSnackbar(error, { variant: 'error' });
+            return
+        }
+        router.push('/');
     }
     return (
         <Layout title='Вход'>

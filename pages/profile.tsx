@@ -19,9 +19,9 @@ import { fullFormOptions } from '../utils/formOptions';
 
 const Profile: NextPage = () => {
 
-    const { updateUser } = useActions()
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-    const { user, isLoading, error } = useTypedSelector(state => state.auth)
+    const { updateUser } = useActions();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+    const { user, isLoading, error } = useTypedSelector(state => state.auth);
     const { handleSubmit, control, formState: { errors }, setValue } = useForm(fullFormOptions);
 
     useEffect(() => {

@@ -1,3 +1,6 @@
+import { IOrder } from "./Order.type"
+import { IProduct } from "./Product.type"
+
 export interface IUser {
     _id: string,
     name: string,
@@ -46,6 +49,14 @@ export type updateUserData = {
     name: string,
     email: string,
     password: string
+}
+
+export type adminInfo = {
+    productsCount: number,
+    ordersCount: number,
+    usersCount: number,
+    products: IProduct[],
+    orders: IOrder[]
 }
 
 export interface ResponseUser extends IUser {

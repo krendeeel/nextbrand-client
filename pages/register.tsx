@@ -21,7 +21,7 @@ const Register: NextPage = () => {
 
     const submitHandler = async ({ name, email, password }: any) => {
         closeSnackbar()
-        registerUser({ name, email, password })
+        await registerUser({ name, email, password });
         error
             ? enqueueSnackbar(error, { variant: 'error' })
             : router.push('/')

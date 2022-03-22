@@ -2,6 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import { MenuItem, IconButton, Box } from '@material-ui/core';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { amber } from '@mui/material/colors';
 import { Logout, Settings } from '@mui/icons-material'
@@ -11,9 +12,10 @@ import { useActions } from '../utils/hooks/useActions';
 import { destroyCookie } from 'nookies';
 
 interface AccountButtonProps {
-    user: string
+    user: string,
+    admin?: boolean
 }
-const AccountButton: React.FC<AccountButtonProps> = ({ user }) => {
+const AccountButton: React.FC<AccountButtonProps> = ({ user, admin }) => {
     const { setUser } = useActions()
     const router = useRouter()
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -35,7 +37,12 @@ const AccountButton: React.FC<AccountButtonProps> = ({ user }) => {
 
     const toProfile = () => {
         setAnchorEl(null);
-        router.push('/profile')
+        router.push('/profile');
+    }
+
+    const toAdmin = () => {
+        setAnchorEl(null);
+        router.push('/admin');
     }
 
     const toOrders = () => {
@@ -103,6 +110,14 @@ const AccountButton: React.FC<AccountButtonProps> = ({ user }) => {
                     </ListItemIcon>
                     Настройки
                 </MenuItem>
+                {admin && (
+                    <MenuItem onClick={toAdmin}>
+                        <ListItemIcon>
+                            <AdminPanelSettingsIcon fontSize="small" />
+                        </ListItemIcon>
+                        Управление
+                    </MenuItem>
+                )}
                 <MenuItem onClick={logioutClickHandler}>
                     <ListItemIcon>
                         <Logout fontSize="small" />

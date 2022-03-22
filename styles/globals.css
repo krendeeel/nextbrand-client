@@ -1,4 +1,5 @@
 @import url("./credit-card.css");
+@import url("./admin.css");
 
 html,
 body {
@@ -45,6 +46,16 @@ footer {
 
 .main {
   flex: 1 1 auto;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 10px;
 }
 
 @media (max-width: 920px) {

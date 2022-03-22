@@ -66,8 +66,18 @@ interface ProductsSetPagesAction {
     payload: number
 }
 
-
-
 export type ProductsAction =
     ProductsSetItemsAction | ProductsSetLoadingAction | ProductsSetErrorAction |
     ProductsSetFilterAction | ProductsSetCurrentPageAction | ProductsSetPagesAction;
+
+export type addProductData = {
+    name: string,
+    category: string,
+    image: string,
+    price: string,
+    brand: string,
+    InStock: boolean,
+    for: string,
+    sizes: string[],
+    description: string
+}    

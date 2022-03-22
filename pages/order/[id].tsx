@@ -16,6 +16,7 @@ import { wrapper } from '../../store';
 import OrdersDataService from '../../api/orders'
 import { IOrder } from '../../types/Order.type';
 import cookies from 'next-cookies';
+import { useTypedSelector } from '../../utils/hooks/useTypedSelector';
 
 
 interface OrderProps {
@@ -25,6 +26,7 @@ interface OrderProps {
 
 const Order: NextPage<OrderProps> = ({ order, token }) => {
     const { shippingAddress: { fullName, address, city, country, postalCode } } = order;
+    const { user } = useTypedSelector(state => state.auth)
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [loading, setLoading] = useState(false);
 
@@ -94,7 +96,7 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                             <OrderCollection items={order.orderItems} />
                         </ListItem>
                         {!order.isDelivered && <ListItem style={{ display: 'flex', justifyContent: 'center' }}>
-                            <Button
+                            {(order._id === user?._id) && <Button
                                 variant="contained"
                                 style={{ background: 'green', color: 'white' }}
                                 endIcon={<CheckIcon />}
@@ -102,7 +104,7 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                                 onClick={deliveredOrder}
                             >
                                 {loading ? <CircularProgress /> : 'Потвердить получение'}
-                            </Button>
+                            </Button>}
                         </ListItem>}
                     </List>
                 </Grid>
