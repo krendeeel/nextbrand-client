@@ -50,7 +50,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ setOpen }) => {
                 <List>
                     {
                         produtsFields.map(i => (
-                            <ListItem>
+                            <ListItem key={i.name}>
                                 <Controller
                                     name={i.name}
                                     control={control}
