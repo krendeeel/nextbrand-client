@@ -42,12 +42,8 @@ export const getUser = () => async (dispatch: Dispatch<AuthAction>) => {
 
 export const loginUser = (data: loginUserData) => async (dispatch: Dispatch<AuthAction>) => {
     dispatch(setLoading(true))
-    try {
-        const user = await AuthDataService.loginUser(data);
-        dispatch(setUser(user))
-    } catch (error) {
-        dispatch(setError('Неправильный логин или пароль!'))
-    }
+    const user = await AuthDataService.loginUser(data);
+    dispatch(setUser(user));
 }
 
 
@@ -55,7 +51,7 @@ export const registerUser = (data: registerUserData) => async (dispatch: Dispatc
     dispatch(setLoading(true))
     try {
         const user = await AuthDataService.registerUser(data);
-        dispatch(setUser(user))
+        dispatch(setUser(user));
     } catch (error) {
         dispatch(setError('Ошибка входа!'))
     }

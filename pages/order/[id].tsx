@@ -17,7 +17,7 @@ import OrdersDataService from '../../api/orders'
 import { IOrder } from '../../types/Order.type';
 import cookies from 'next-cookies';
 import { useTypedSelector } from '../../utils/hooks/useTypedSelector';
-
+import { getDate } from '../../utils/getDate';
 
 interface OrderProps {
     order: IOrder,
@@ -54,7 +54,7 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                             variant='h5'
                             className='bolder'
                         >
-                            Заказ {order._id}
+                            Заказ {order._id.substring(20, 24)}
                         </Typography>
                         <ListItem>
                             <Typography component='h2' variant='h6'>Адрес</Typography>
@@ -78,14 +78,14 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                             <Typography component='h2' variant='h6'>Оплачено</Typography>
                         </ListItem>
                         <ListItem>
-                            <Typography className='bolder' style={{ color: 'green' }}>{order.paidAt}</Typography>
+                            <Typography className='bolder' style={{ color: 'green' }}>{getDate(order.paidAt)}</Typography>
                         </ListItem>
                         <ListItem>
                             <Typography component='h2' variant='h6'>Доставлено</Typography>
                         </ListItem>
                         <ListItem>
                             {order.isDelivered
-                                ? (<Typography className='bolder' style={{ color: 'green' }}>{order.deliveredAt}</Typography>)
+                                ? (<Typography className='bolder' style={{ color: 'green' }}>{getDate(order.deliveredAt)}</Typography>)
                                 : (<Typography>Заказ отправлен</Typography>)
                             }
                         </ListItem>
@@ -96,7 +96,7 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                             <OrderCollection items={order.orderItems} />
                         </ListItem>
                         {!order.isDelivered && <ListItem style={{ display: 'flex', justifyContent: 'center' }}>
-                            {(order._id === user?._id) && <Button
+                            <Button
                                 variant="contained"
                                 style={{ background: 'green', color: 'white' }}
                                 endIcon={<CheckIcon />}
@@ -104,7 +104,7 @@ const Order: NextPage<OrderProps> = ({ order, token }) => {
                                 onClick={deliveredOrder}
                             >
                                 {loading ? <CircularProgress /> : 'Потвердить получение'}
-                            </Button>}
+                            </Button>
                         </ListItem>}
                     </List>
                 </Grid>

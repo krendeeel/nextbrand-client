@@ -22,7 +22,7 @@ import { wrapper } from '../store';
 import cookies from 'next-cookies'
 import OrdersDataService from '../api/orders/index'
 import { IOrder } from '../types/Order.type';
-
+import { getDate } from '../utils/getDate';
 interface OrderHistoryProps {
     orders: Array<IOrder>
 }
@@ -56,7 +56,7 @@ const OrderHistory: NextPage<OrderHistoryProps> = ({ orders }) => {
                                             {orders.map((order) => (
                                                 <TableRow key={order._id}>
                                                     <TableCell align='center'>{order._id.substring(20, 24)}</TableCell>
-                                                    <TableCell align='center'>{order.createdAt}</TableCell>
+                                                    <TableCell align='center'>{getDate(order.createdAt)}</TableCell>
                                                     <TableCell align='center'>{order.totalPrice} ₽</TableCell>
                                                     <TableCell align='center'>
                                                         {

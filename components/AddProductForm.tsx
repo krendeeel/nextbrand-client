@@ -7,7 +7,6 @@ import { Controller, useForm } from 'react-hook-form';
 import { useSnackbar } from 'notistack';
 import { produtsFields } from '../data/data';
 import ProductsDataService from '../api/products';
-
 interface AddProductFormProps {
     setOpen: (open: boolean) => void
 }

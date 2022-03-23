@@ -1,32 +1,33 @@
-import { Button, Link, List, ListItem, TextField, Typography } from '@material-ui/core'
-import Layout from '../layouts/Layout'
-import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import { Controller, useForm } from 'react-hook-form'
-import { useSnackbar } from 'notistack'
-import { loginFormOptions } from '../utils/formOptions'
-import { wrapper } from '../store'
-import { GetServerSideProps, NextPage } from 'next'
-import { CircularProgress } from '@mui/material'
-import { useTypedSelector } from '../utils/hooks/useTypedSelector'
+import { Button, Link, List, ListItem, TextField, Typography } from '@material-ui/core';
+import Layout from '../layouts/Layout';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import { Controller, useForm } from 'react-hook-form';
+import { useSnackbar } from 'notistack';
+import { loginFormOptions } from '../utils/formOptions';
+import { wrapper } from '../store';
+import { GetServerSideProps, NextPage } from 'next';
+import { CircularProgress } from '@mui/material';
 import { useActions } from '../utils/hooks/useActions'
-
+import { useState } from 'react';
 
 const Login: NextPage = () => {
     const { handleSubmit, control, formState: { errors } } = useForm(loginFormOptions);
-    const { isLoading, error } = useTypedSelector(state => state.auth)
-    const { loginUser } = useActions()
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+    const { loginUser } = useActions();
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-    const router = useRouter()
     const submitHandler = async ({ email, password }: any) => {
-        closeSnackbar()
-        await loginUser({ email, password });
-        console.log(error, "ERROR")
-        if (error) {
-            enqueueSnackbar(error, { variant: 'error' });
-            return
+        closeSnackbar();
+        try {
+            setLoading(true);
+            await loginUser({ email, password });
+            router.push('/');
+        } catch (e) {
+            enqueueSnackbar('Неправильный логин или пароль', { variant: 'error' });
+        } finally {
+            setLoading(false);
         }
-        router.push('/');
     }
     return (
         <Layout title='Вход'>
@@ -80,9 +81,9 @@ const Login: NextPage = () => {
                             type='submit'
                             fullWidth
                             color='primary'
-                            disabled={isLoading}
+                            disabled={loading}
                         >
-                            {isLoading ? <CircularProgress /> : 'Войти'}
+                            {loading ? <CircularProgress /> : 'Войти'}
                         </Button>
                     </ListItem>
                     <ListItem >
@@ -103,7 +104,7 @@ export default Login;
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(store => async ctx => {
     const user = store.getState().auth.user
-    if (user) {
+    if (user?._id) {
         return {
             redirect: {
                 permanent: false,
